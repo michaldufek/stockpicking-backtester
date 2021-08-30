@@ -12,8 +12,8 @@ import dash_table
 from datetime import date
 import pickle
 
-import os
-os.chdir("./src")
+#import os
+#os.chdir("./src")
 
 import main
 import model_performance as mp
