@@ -1,0 +1,36 @@
+variables:
+  IMAGE: "stockpicking-model"
+  CONTAINER: "stockpicking-model"
+
+stages:
+  - gen-sp-report
+
+run-sp-model-pycode:
+  stage: gen-sp-report
+  tags:
+    - babak-office
+  script:
+    - echo "Clean up an old image..."
+    - docker rmi "${IMAGE}:latest" --force || true
+    - echo "Build docker image..."
+    - docker build -t "${IMAGE}:latest" .
+    - echo "Build DONE"
+    - echo "Running image..."
+    - docker run "${IMAGE}:latest" -f=$FREQ
+  only:
+    - python_code
+
+run-sp-model-master:
+  stage: gen-sp-report
+  tags:
+    - do-dev-anp
+  script:
+    - echo "Clean up an old image..."
+    - docker rmi "${IMAGE}:latest" --force || true
+    - echo "Build docker image..."
+    - docker build -t "${IMAGE}:latest" .
+    - echo "Build DONE"
+    - echo "Running image..."
+    - docker run "${IMAGE}:latest" -f=$FREQ
+  only:
+    - master
