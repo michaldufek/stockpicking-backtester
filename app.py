@@ -196,7 +196,5 @@ def make_backtest(n_clicks, start_date, desired_stocks, number_assets, leverage,
     return fig_equity, equity[::-1].head().to_dict("records")
 # ------------------------------------------------------------------------------
 if __name__ == '__main__':
-    app.run_server(
-        port=8050,
-        host="0.0.0.0"
-        )
+    #gunicorn -b 0.0.0.0:8050 app:app.server
+    app.run_server(port=8050, host="127.0.0.1")
