@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 #%%
-from argparse import ArgumentParser
+#from argparse import ArgumentParser
 import data_computer as dc
 import data_storage as ds
 import feature_selection as fs
@@ -12,10 +12,10 @@ import datetime as dt
 import warnings
 import os
 
-parser = ArgumentParser()
-parser.add_argument("-f", "--rebalance-frequency", dest="freq_rebalanc", help="rebalance frequency", choices=['daily', 'monthly', 'quarterly', 'annual'], default="monthly")
-parser.add_argument("-i", "--stock-index", dest="stock_index", help="stock market index", choices=['SP500', 'Russel3000'])
-args = parser.parse_args()
+#parser = ArgumentParser()
+#parser.add_argument("-f", "--rebalance-frequency", dest="freq_rebalanc", help="rebalance frequency", choices=['daily', 'monthly', 'quarterly', 'annual'], default="monthly")
+#parser.add_argument("-i", "--stock-index", dest="stock_index", help="stock market index", choices=['SP500', 'Russel3000'])
+#args = parser.parse_args()
 from model_performance import backtest_stockpicker
 from model_diagnostics import print_metrics, plot_learning_curve
 
@@ -61,8 +61,8 @@ if LITE_version:
     horiz_pairs_mom = horiz_pairs_currvol = [ [15, 22], [15, 66], [22, 66] ] # TEST
 
 # Frequency of portfolio re-balancing - iFrequency
-#freq_rebalanc = "monthly" # daily, weekly, monthly, quarterly, semi-annual, annual
-freq_rebalanc = args.freq_rebalanc 
+freq_rebalanc = "monthly" # daily, weekly, monthly, quarterly, semi-annual, annual
+#freq_rebalanc = args.freq_rebalanc 
 # zatim podporovano jen daily, monthly, quarterly, annual
 # Number of periods in a year - PeriodsYear
 n_periods_year = {"daily": 252,
